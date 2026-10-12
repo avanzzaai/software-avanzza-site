@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0d1b2a">
+<title>Software Avanzza — Agentes IA que venden, agendan y responden por ti</title>
+<meta name="description" content="Software con agentes de IA para negocios de CDMX: WhatsApp 24/7, agenda automática, seguimiento de leads. Desde $7,500 MXN/mes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1b2a;
+  --bg-2: #081220;
+  --card: rgba(255,255,255,0.045);
+  --teal: #00A99D;
+  --teal-bright: #00d4aa;
+  --mint: #5eecd0;
+  --orange: #E8730C;
+  --text: #f0fdfa;
+  --muted: #94a3b8;
+  --border: rgba(94,236,208,0.12);
+  --border-hi: rgba(94,236,208,0.32);
+  --pop: 'Poppins', sans-serif;
+  --body: 'Inter', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: rgba(0,169,157,0.15); }
+html { scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(ellipse 90% 40% at 50% 0%, rgba(0,169,157,0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 45% at 90% 95%, rgba(232,115,12,0.10) 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  color: var(--text);
+  font-family: var(--body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+.container { max-width: 480px; margin: 0 auto; padding: 0 22px; }
+h1, h2, h3 { font-family: var(--pop); }
+.glass {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: 50px;
+  background: rgba(0,169,157,0.12);
+  border: 1px solid rgba(0,169,157,0.32);
+  font-size: 12px; font-weight: 600; color: var(--mint);
+  font-family: var(--pop); letter-spacing: 0.5px;
+}
+.badge .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--teal-bright);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1);} 50% { opacity: 0.4; transform: scale(0.7);} }
+
+/* ===== HERO ===== */
+.hero {
+  padding: max(72px, env(safe-area-inset-top)) 0 56px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 36px; font-weight: 800; line-height: 1.15;
+  letter-spacing: -0.5px; margin: 18px 0 16px;
+}
+.hero h1 .grad { color: var(--teal-bright); }
+.hero p.sub {
+  font-size: 16px; color: var(--muted);
+  max-width: 340px; margin: 0 auto 12px;
+}
+/* Typing demo */
+.typing-box {
+  max-width: 340px; margin: 24px auto 0;
+  background: rgba(8,18,32,0.7);
+  border: 1px solid var(--border-hi);
+  border-radius: 18px; padding: 14px;
+  text-align: left;
+}
+.tb-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; }
+.tb-row:last-child { margin-bottom: 0; }
+.tb-ava {
+  width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--teal), var(--teal-bright));
+  display: flex; align-items: center; justify-content: center;
+  color: #06251f; font-weight: 800; font-size: 16px; font-family: var(--pop);
+}
+.tb-bubble {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 4px 14px 14px 14px;
+  padding: 10px 14px; font-size: 14px; min-height: 44px;
+}
+.tb-bubble.client { border-radius: 14px 4px 14px 14px; background: rgba(232,115,12,0.1); border-color: rgba(232,115,12,0.25); }
+.tb-cursor {
+  display: inline-block; width: 2px; height: 15px;
+  background: var(--teal-bright); margin-left: 2px;
+  vertical-align: middle; animation: blink 0.8s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+.cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 52px; padding: 15px 34px; margin-top: 26px;
+  background: linear-gradient(135deg, var(--teal) 0%, #008a80 100%);
+  border: none; border-radius: 14px;
+  color: #fff; font-size: 16px; font-weight: 700;
+  font-family: var(--pop); text-decoration: none;
+  box-shadow: 0 8px 32px rgba(0,169,157,0.35);
+}
+.hero .trust {
+  margin-top: 14px; font-size: 13px; color: var(--muted);
+}
+.hero .trust strong { color: var(--mint); }
+
+/* ===== SECTIONS ===== */
+.section { padding: 56px 0; }
+.sec-tag {
+  display: block; text-align: center;
+  font-size: 12px; font-weight: 700; color: var(--teal);
+  letter-spacing: 2px; text-transform: uppercase;
+  font-family: var(--pop); margin-bottom: 10px;
+}
+.sec-title {
+  text-align: center; font-size: 27px; font-weight: 800;
+  letter-spacing: -0.5px; margin-bottom: 12px;
+}
+.sec-sub {
+  text-align: center; color: var(--muted); font-size: 14px;
+  max-width: 360px; margin: 0 auto 32px;
+}
+
+/* ===== PRODUCTS ===== */
+.prod {
+  padding: 22px; margin-bottom: 16px;
+  position: relative;
+}
+.prod-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: linear-gradient(135deg, rgba(0,169,157,0.25), rgba(0,169,157,0.06));
+  border: 1px solid var(--border-hi);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+}
+.prod-icon svg { width: 26px; height: 26px; stroke: var(--teal-bright); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.prod h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+.prod p { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
+.prod ul { list-style: none; }
+.prod li {
+  font-size: 13px; color: var(--muted);
+  padding: 4px 0 4px 24px; position: relative;
+}
+.prod li::before {
+  content: '✓'; position: absolute; left: 0;
+  color: var(--teal-bright); font-weight: 700;
+}
+.prod .pill {
+  position: absolute; top: 18px; right: 18px;
+  font-size: 11px; font-weight: 700; font-family: var(--pop);
+  padding: 5px 12px; border-radius: 20px;
+  background: rgba(232,115,12,0.14); color: #f59e0b;
+  border: 1px solid rgba(232,115,12,0.3);
+}
+
+/* ===== STEPS ===== */
+.step {
+  display: flex; gap: 16px; padding: 18px; margin-bottom: 12px;
+  align-items: flex-start;
+}
+.step-n {
+  width: 44px; height: 44px; flex-shrink: 0; border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0,169,157,0.22), rgba(0,169,157,0.05));
+  border: 1px solid var(--border-hi);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--pop); font-weight: 800; font-size: 18px;
+  color: var(--teal-bright);
+}
+.step h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.step p { font-size: 13px; color: var(--muted); }
+
+/* ===== PRICING ===== */
+.price {
+  padding: 24px 20px; margin-bottom: 16px; text-align: center;
+}
+.price.feat {
+  border-color: var(--border-hi);
+  background: linear-gradient(180deg, rgba(0,169,157,0.1), rgba(255,255,255,0.03));
+  box-shadow: 0 0 40px rgba(0,169,157,0.14);
+}
+.p-tier { font-size: 13px; font-weight: 700; color: var(--mint); letter-spacing: 1.5px; font-family: var(--pop); margin-bottom: 6px; }
+.p-amount { font-size: 38px; font-weight: 800; font-family: var(--pop); line-height: 1.1; }
+.p-amount small { font-size: 14px; font-weight: 500; color: var(--muted); }
+.p-per { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+.p-feats { list-style: none; text-align: left; margin-bottom: 18px; }
+.p-feats li {
+  font-size: 14px; color: var(--muted);
+  padding: 6px 0 6px 26px; position: relative;
+}
+.p-feats li::before {
+  content: '✓'; position: absolute; left: 0;
+  color: var(--teal-bright); font-weight: 700;
+}
+.p-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; min-height: 50px; padding: 14px;
+  border-radius: 12px; text-decoration: none;
+  font-size: 15px; font-weight: 700; font-family: var(--pop);
+}
+.p-btn.primary { background: linear-gradient(135deg, var(--teal), #008a80); color: #fff; }
+.p-btn.ghost { background: rgba(255,255,255,0.06); color: var(--text); border: 1px solid var(--border-hi); }
+.p-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* ===== FAQ ===== */
+.faq { margin-bottom: 12px; overflow: hidden; }
+.faq-q {
+  width: 100%; min-height: 48px; padding: 16px 18px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: none; border: none; cursor: pointer;
+  font-family: var(--pop); font-size: 15px; font-weight: 600;
+  color: var(--text); text-align: left;
+}
+.faq-q .arw { color: var(--teal-bright); transition: transform 0.3s; flex-shrink: 0; margin-left: 12px; }
+.faq.open .arw { transform: rotate(180deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.faq-a div { padding: 0 18px 18px; font-size: 14px; color: var(--muted); }
+.faq.open .faq-a { max-height: 300px; }
+
+/* ===== FINAL CTA + FOOTER ===== */
+.final { padding: 64px 0; text-align: center; }
+.final h2 { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+.final h2 span { color: var(--teal-bright); }
+.final p { color: var(--muted); font-size: 15px; margin-bottom: 24px; }
+footer {
+  padding: 28px 0 max(28px, env(safe-area-inset-bottom));
+  text-align: center; border-top: 1px solid var(--border);
+}
+footer .brand { font-family: var(--pop); font-weight: 800; font-size: 15px; }
+footer .brand span { color: var(--teal-bright); }
+footer p { font-size: 11px; color: var(--muted); margin-top: 8px; }
+
+.wa-float {
+  position: fixed; bottom: max(20px, env(safe-area-inset-bottom)); right: 20px;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+  z-index: 100; text-decoration: none;
+}
+.wa-float svg { width: 28px; height: 28px; fill: #fff; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <header class="hero">
+    <span class="badge"><span class="dot"></span> AGENTES IA EN OPERACIÓN 24/7</span>
+    <h1>Software que responde,<br>agenda y <span class="grad">vende por ti</span></h1>
+    <p class="sub">Agentes de IA entrenados para tu negocio. Atienden WhatsApp, califican leads y agendan citas sin que levantes un dedo.</p>
+
+    <div class="typing-box" aria-label="Demo de conversación automatizada">
+      <div class="tb-row">
+        <div class="tb-ava">A</div>
+        <div class="tb-bubble" id="typingTarget"><span id="typedText"></span><span class="tb-cursor" id="cursor"></span></div>
+      </div>
+      <div class="tb-row">
+        <div class="tb-ava" style="background:rgba(232,115,12,0.2); color:#f59e0b;">C</div>
+        <div class="tb-bubble client">¿Me agendas para el jueves a las 11? 🙌</div>
+      </div>
+    </div>
+
+    <a href="https://wa.me/5210000000000?text=Hola!%20Quiero%20una%20demo%20de%20Software%20Avanzza" class="cta">Quiero mi demo gratis →</a>
+    <p class="trust">Sin permanencia · Setup en 7 días · <strong>Soporte en español</strong></p>
+  </header>
+
+  <!-- PRODUCTS -->
+  <section class="section" id="software">
+    <span class="sec-tag">Qué vendemos</span>
+    <h2 class="sec-title">El software que tu negocio necesita</h2>
+    <p class="sec-sub">Tres productos, un objetivo: que tu operación corra sola mientras tú cierras.</p>
+
+    <div class="prod glass">
+      <span class="pill">★ TOP VENTAS</span>
+      <div class="prod-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <h3>Agente WhatsApp 24/7</h3>
+      <p>Responde cotizaciones, dudas frecuentes y toma pedidos en automático. Tu negocio nunca vuelve a dejar un mensaje en visto.</p>
+      <ul>
+        <li>Entrenado con la información de tu negocio</li>
+        <li>Califica leads y agenda citas directo</li>
+        <li>Escala a un humano cuando conviene</li>
+      </ul>
+    </div>
+
+    <div class="prod glass">
+      <div class="prod-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h3>Automatización de procesos</h3>
+      <p>Cotizaciones, seguimiento de clientes, recordatorios de pago y reportes. Todo lo repetitivo se vuelve automático.</p>
+      <ul>
+        <li>Conectado a tu CRM actual</li>
+        <li>Recordatorios y cobranza automática</li>
+        <li>Dashboard de resultados en tiempo real</li>
+      </ul>
+    </div>
+
+    <div class="prod glass">
+      <div class="prod-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>Agente vertical para tu industria</h3>
+      <p>Agentes especializados para clínicas, restaurantes, inmobiliarias y seguros. Hablan el idioma de tu negocio.</p>
+      <ul>
+        <li>Flujos diseñados para tu vertical</li>
+        <li>Integra con agendas y expedientes</li>
+        <li>Marca propia en cada interacción</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="section" id="como">
+    <span class="sec-tag">Cómo empiezas</span>
+    <h2 class="sec-title">De cero a operativo en 7 días</h2>
+    <p class="sec-sub">Sin proyectos eternos ni consultorías de 6 meses. Una semana y estás corriendo.</p>
+
+    <div class="step glass">
+      <div class="step-n">1</div>
+      <div>
+        <h3>Demo personalizada</h3>
+        <p>En 30 minutos vemos tu operación y te mostramos el agente respondiendo preguntas reales de tu negocio.</p>
+      </div>
+    </div>
+    <div class="step glass">
+      <div class="step-n">2</div>
+      <div>
+        <h3>Setup y entrenamiento</h3>
+        <p>Cargamos tu información, conectamos tus canales y entrenamos al agente con tus casos reales.</p>
+      </div>
+    </div>
+    <div class="step glass">
+      <div class="step-n">3</div>
+      <div>
+        <h3>En vivo, vendiendo</h3>
+        <p>El agente entra en operación y empieza a responder, agendar y calificar desde el primer día.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" id="precios">
+    <span class="sec-tag">Precios claros</span>
+    <h2 class="sec-title">Planes en MXN, sin letra chica</h2>
+    <p class="sec-sub">Todo incluye setup, entrenamiento del agente y soporte por WhatsApp.</p>
+
+    <div class="price glass feat">
+      <div class="p-tier">PYME</div>
+      <div class="p-amount">$7,500<small>/mes</small></div>
+      <div class="p-per">1 agente · WhatsApp + web</div>
+      <ul class="p-feats">
+        <li>Agente WhatsApp 24/7</li>
+        <li>Calificación y agenda automática</li>
+        <li>Dashboard de resultados</li>
+        <li>Soporte por WhatsApp</li>
+      </ul>
+      <a href="https://wa.me/5210000000000?text=Hola!%20Me%20interesa%20el%20plan%20PYME%20de%20Software%20Avanzza" class="p-btn primary">Empezar con PYME</a>
+    </div>
+
+    <div class="price glass">
+      <div class="p-tier">ESCALA</div>
+      <div class="p-amount">$18,000<small>/mes</small></div>
+      <div class="p-per">hasta 3 agentes · + automatizaciones</div>
+      <ul class="p-feats">
+        <li>Todo lo del plan PYME</li>
+        <li>Automatización de procesos</li>
+        <li>Integración con tu CRM</li>
+        <li>Reportes semanales automáticos</li>
+      </ul>
+      <a href="https://wa.me/5210000000000?text=Hola!%20Me%20interesa%20el%20plan%20ESCALA%20de%20Software%20Avanzza" class="p-btn ghost">Cotizar ESCALA</a>
+    </div>
+
+    <div class="price glass">
+      <div class="p-tier">ENTERPRISE</div>
+      <div class="p-amount">Custom</div>
+      <div class="p-per">agentes ilimitados · infra dedicada</div>
+      <ul class="p-feats">
+        <li>Agente vertical a la medida</li>
+        <li>Integraciones con tus sistemas</li>
+        <li>SLA y soporte prioritario</li>
+      </ul>
+      <a href="https://wa.me/5210000000000?text=Hola!%20Me%20interesa%20ENTERPRISE%20de%20Software%20Avanzza" class="p-btn ghost">Hablar con ventas</a>
+    </div>
+    <p class="p-note">Precios en pesos mexicanos. Facturamos con IVA desglosado.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <span class="sec-tag">Dudas</span>
+    <h2 class="sec-title">Lo que más preguntan</h2>
+
+    <div class="faq glass">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿El agente suena robótico?<span class="arw">▾</span></button>
+      <div class="faq-a"><div>No. Se entrena con el tono de tu negocio y tus respuestas reales. La mayoría de tus clientes no notará que es IA — y cuando el caso lo amerita, escala la conversación a tu equipo.</div></div>
+    </div>
+    <div class="faq glass">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Necesito saber de tecnología?<span class="arw">▾</span></button>
+      <div class="faq-a"><div>Cero. Nosotros hacemos el setup, la conexión y el entrenamiento. Tú solo ves los resultados en un panel simple.</div></div>
+    </div>
+    <div class="faq glass">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Funciona con mi número actual de WhatsApp?<span class="arw">▾</span></button>
+      <div class="faq-a"><div>Sí. Trabajamos sobre tu número o te damos uno nuevo dedicado al agente, como tú prefieras.</div></div>
+    </div>
+    <div class="faq glass">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">¿Hay permanencia forzosa?<span class="arw">▾</span></button>
+      <div class="faq-a"><div>No. Contrato mensual, cancelas cuando quieras. Nos quedamos porque funciona, no porque firmaste 12 meses.</div></div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="final">
+    <h2>Tu próximo cliente te escribe<br><span>en 3, 2, 1...</span></h2>
+    <p>¿Respondes tú, o responde tu software?</p>
+    <a href="https://wa.me/5210000000000?text=Hola!%20Quiero%20mi%20demo%20gratis%20de%20Software%20Avanzza" class="cta">Pedir demo gratis →</a>
+  </section>
+
+  <footer>
+    <div class="brand">SOFTWARE <span>AVANZZA</span></div>
+    <p>Agentes de IA para negocios de CDMX Sur</p>
+    <p style="opacity: 0.6;">© 2026 Avanzza AI · WhatsApp no está afiliado a este producto</p>
+  </footer>
+</div>
+
+<a href="https://wa.me/5210000000000?text=Hola!%20Me%20interesa%20Software%20Avanzza" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.3-1.6c1.7.9 3.7 1.4 5.7 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 22c-1.8 0-3.5-.5-5-1.3l-.4-.2-5 1 1-4.9-.3-.4C5.4 17.6 5 16.3 5 15c0-6 4.9-11 11-11s11 5 11 11-5 11-11 11zm6-14.8c-.3-.2-.7-.2-1 .1l-1.3 1.6c-.2.2-.5.3-.7.1-1.7-.8-3.6-2.7-4.4-4.4-.2-.2-.1-.5.1-.7l1.6-1.3c.3-.3.3-.7.1-1l-1.6-2.7c-.2-.3-.6-.4-.9-.2-1.3.6-2.6 1.7-3.3 3-.4.8-.6 1.8-.2 2.7.9 2.6 3.8 6.2 6.4 7.9 1.1.7 2.3.9 3.4.5.9-.3 1.9-1.1 2.6-2.1.2-.3.2-.7-.1-.9l-2.7-1.7z"/></svg>
+</a>
+
+<script>
+// Streaming typing effect in hero (pure visual, content visible without JS)
+(function () {
+  var msg = "¡Hola! Soy el agente de IA de tu negocio. ¿En qué te puedo ayudar hoy?";
+  var el = document.getElementById('typedText');
+  if (!el) return;
+  var i = 0, hold = 0;
+  function tick() {
+    if (i <= msg.length) {
+      el.textContent = msg.slice(0, i);
+      i++;
+      hold = 0;
+    } else {
+      // pause, then restart the loop
+      hold++;
+      if (hold > 90) { i = 0; }
+    }
+    setTimeout(tick, 45);
+  }
+  setTimeout(tick, 700);
+})();
+</script>
+</body>
+</html>
